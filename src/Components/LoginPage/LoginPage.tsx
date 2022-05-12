@@ -17,10 +17,7 @@ const LoginPage = () => {
   const onSubmit = (input: { login: string; password: string }) => {
     const isMatchPassword = checkPassword(input.login, input.password);
     if (isMatchPassword) {
-      console.log("Correct login and password");
     } else {
-      console.log("Incorrect login or password");
-
       return { [FORM_ERROR]: t("loginPage.incorrectUser") };
     }
   };
@@ -51,7 +48,7 @@ const LoginPage = () => {
             />
             {submitError && <h4> {submitError}</h4>}
             <ButtonWrapper>
-              <Button variant="contained" type="submit">
+              <Button type="submit" variant="contained" onClick={handleSubmit}>
                 {t("loginPage.signIn")}
               </Button>
             </ButtonWrapper>

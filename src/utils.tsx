@@ -13,14 +13,12 @@ export const getLocalData = (key: string) => {
     : [];
 };
 
-export const checkPassword = (login: any, password: string) => {
-  const users = getLocalData("users");
-  if (users !== []) {
-    if (password === users[login]) {
-      localStorage.setItem("currentUser", login);
-      return true;
-    } else {
-      return false;
-    }
+export const checkPassword = (login: string, password: string) => {
+  const users = getLocalData("users") || [];
+
+  if (password !== users[login]) return false;
+  {
+    localStorage.setItem("currentUser", login);
+    return true;
   }
 };

@@ -9,4 +9,10 @@ export const HeaderWrapper = styled(CardWrapper)`
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 25pt;
-  `;
+    padding-right: 1rem;
+    padding-left: 1rem;
+`;
+export const LogoWrapper = styled.div`
+    width: 55px;
+    height: 55px;
+`;

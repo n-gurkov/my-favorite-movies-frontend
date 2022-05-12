@@ -6,4 +6,4 @@ export const CardWrapper = styled.div`
     box-shadow: 3px 3px 10px gray;
     align-items: center;
     border: 1px solid gray;
-  `;
+`;
