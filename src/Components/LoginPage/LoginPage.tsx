@@ -16,8 +16,7 @@ const LoginPage = () => {
   const { t, i18n } = useTranslation();
   const onSubmit = (input: { login: string; password: string }) => {
     const isMatchPassword = checkPassword(input.login, input.password);
-    if (isMatchPassword) {
-    } else {
+    if (!isMatchPassword) {
       return { [FORM_ERROR]: t("loginPage.incorrectUser") };
     }
   };
