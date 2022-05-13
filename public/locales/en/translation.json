@@ -1,0 +1,14 @@
+ 
+{
+    "loginPage": {
+      "login": "login",
+      "password": "password",
+      "incorrectUser": "Incorrect login or password",
+      "emptyField": "Field must be filled",
+      "signIn": "Sign in"
+    },
+    "header":{
+      "ru": "Russian",
+      "en": "English"
+    }
+}
