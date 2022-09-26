@@ -10,5 +10,12 @@
     "header":{
       "ru": "Russian",
       "en": "English"
+    },
+    "mainPage":{
+      "hello": "Hello",
+      "genres": "Select your favorite genres:",
+      "logout": "Logout",
+      "badURL": "Wrong URL",
+      "add": "Add"
     }
 }

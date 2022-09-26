@@ -11,13 +11,17 @@ import LoginField from "./components/LoginField";
 import { useTranslation } from "react-i18next";
 import { checkPassword } from "../../utils";
 import { FORM_ERROR } from "final-form";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const onSubmit = (input: { login: string; password: string }) => {
     const isMatchPassword = checkPassword(input.login, input.password);
     if (!isMatchPassword) {
       return { [FORM_ERROR]: t("loginPage.incorrectUser") };
+    } else {
+      navigate("/main-page");
     }
   };
   return (
