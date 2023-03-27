@@ -12,10 +12,11 @@ import GenresSelector from './components/GenresSelector/GenresSelector';
 import MyMovies from './components/MyMovies/MyMovies';
 import block from 'src/Components/MainPage/assets/block.svg';
 import list from 'src/Components/MainPage/assets/list.svg';
-
-const user = localStorage.getItem('currentUser');
+import plus from 'src/Components/MainPage/assets/plus.svg';
 
 const MainPage = () => {
+  const user = localStorage.getItem('currentUser');
+
   const navigate = useNavigate();
   const { t } = useTranslation();
   const AddMovie = () => {
@@ -41,8 +42,9 @@ const MainPage = () => {
         <GenresSelector />
       </div>
       <ButtonsWrapper>
-        <MainPageButton onClick={AddMovie}>{t('mainPage.add')}</MainPageButton>
-
+        <MainPageButton onClick={AddMovie}>
+          <img src={plus} />
+        </MainPageButton>
         <MainPageButton onClick={() => setView(true)} isChecked={isBlockView}>
           <img src={block} />
         </MainPageButton>
