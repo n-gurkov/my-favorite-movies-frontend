@@ -32,7 +32,9 @@ export const checkPassword = (login: string, password: string) => {
 export const getGenresList = (language: string) => {
   return fetch(
     `${genresListUrl}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`,
+
     { method: 'GET' },
+
   )
     .then((response) => {
       return response.json();
@@ -50,11 +52,14 @@ export const getMoviesList = (
   language?: string,
   withGenres?: string,
   year?: number,
+
   rating?: number,
 ) => {
   return fetch(
     `${moviesListUrl}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&with_genres=${withGenres}&year=${year}&vote_average.gte=${rating}&page=${page}`,
-    { method: 'GET' },
+   
+   { method: 'GET' }, 
+   
   )
     .then((response) => {
       return response.json();
@@ -70,19 +75,21 @@ export const getMoviesList = (
 export const getMovie = (movieId: number, language?: string) => {
   return fetch(
     `${movieUrl}${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`,
+    
     { method: 'GET' },
+    
   )
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       return data;
     })
     .catch(() => {
       return {};
     });
 };
+
 
 export interface IGenre {
   id: number;
@@ -131,3 +138,4 @@ export interface IFavoriteMovieProps {
   handleIsWatched: (index: number, id: number) => void;
   handleDeleteMovie: (id: number) => void;
 } 
+
