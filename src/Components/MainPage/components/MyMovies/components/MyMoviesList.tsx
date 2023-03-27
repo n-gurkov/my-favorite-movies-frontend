@@ -2,6 +2,7 @@ import React from 'react';
 import {
   MoviePresentList,
   MovieWrapperList,
+  PictureCard,
 } from 'src/Components/MainPage/assets/MainPageStyledComponents';
 import { posterUrl } from 'src/urls';
 import { IFavoriteMovieProps, IMovie } from 'src/utils';
@@ -23,9 +24,13 @@ const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
             key={movie.id}
             isWatched={movie.isWatched ? true : false}
           >
-            <h1>{movie.title}</h1>
-            <img src={posterUrl + movie.poster_path} alt={movie.title}/>
-            <span>{movie.overview}</span>
+            <PictureCard src={posterUrl + movie.poster_path} />
+
+            <div>
+              <h1>{movie.title}</h1>
+              <span>{movie.overview}</span>
+            </div>
+
             <div>
               <button onClick={() => handleIsWatched(index, movie.id)}>
                 <img src={checkmark} />

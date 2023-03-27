@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { CardWrapper } from 'src/Components/styles/styles';
-import MainPage from '../MainPage';
 
 export const LogoutForm = styled(CardWrapper)`
   display: inline-block;
@@ -40,35 +39,28 @@ export const MovieWrapperBlock = styled.div`
 
 export const MovieWrapperList = styled.div<{ isBlockView: boolean }>`
   display: flex;
+  flex-wrap: wrap;
+
   ${(props) =>
-    props.isBlockView ? 'flex-direction: column' : 'flex-direction: row'};
+    props.isBlockView ? 'flex-direction: row' : 'flex-direction: column'};
 `;
 
-export const MoviePresentBlock = styled.div<{ isWatched: boolean }>`
+export const MoviePresentList = styled(CardWrapper)<{
+  isWatched: boolean;
+  isBlockView: boolean;
+}>`
   display: flex;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid gray;
-  border-radius: 50px 20px;
-  box-shadow: 0 0 2px;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  text-align: justify;
-  opacity: ${(props) => (props.isWatched ? '0.5' : '1')};
-`;
 
-export const MoviePresentList = styled.div<{ isWatched: boolean, isBlockView: boolean }>`
-  display: flex;
   margin: 10px;
   padding: 10px;
-  border: 1px solid gray;
-  border-radius: 50px 20px;
+
   box-shadow: 0 0 2px;
-  width: 100%;
-  ${(props) =>
-    props.isBlockView ? 'flex-direction: column' : 'flex-direction: row'};
+
   opacity: ${(props) => (props.isWatched ? '0.5' : '1')};
+  ${(props) => (props.isBlockView ? 'justify-content: center' : 'none')};
+  ${(props) => (props.isBlockView ? 'flex-wrap: wrap' : 'none')};
+
+  ${(props) => (props.isBlockView ? 'width: 30%;' : 'width: 98%;')};
 `;
 
 export const ButtonsWrapper = styled(LogoutForm)`
@@ -86,4 +78,13 @@ export const MainPageButton = styled(GenreCard)`
 export const MainPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const PictureCard = styled.div<{
+  src: string;
+}>`
+  content: url(${(props) => props.src});
+  max-width: 100%;
+
+  height: auto;
 `;

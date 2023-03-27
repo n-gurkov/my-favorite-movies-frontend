@@ -17,15 +17,9 @@ const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   const [userMoviesIDs, setUserIDs] = useState<number[]>([]);
 
   useEffect(() => {
-   let qwwer = [100] 
-  localStorage.setItem('userMoviesIDs', JSON.stringify(qwwer));
-    let watched: [] = [];
-    let qw = getLocalData('userMoviesIDs')
-    if (getLocalData('userMoviesIDs') !== []) {
-     watched = getLocalData('userMoviesIDs');
-      console.log(watched)
-    }
-    
+    const watched: number[] = getLocalData('userMoviesIDs');
+    if (!watched.length) return;
+
     watched.map((id) =>
       getMovie(id, i18n.language).then((movie: IMovie) => {
         setFavoriteMovies((prev) =>
@@ -36,9 +30,9 @@ const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
                 ? true
                 : false,
             },
-          }),
+          })
         );
-      }),
+      })
     );
   }, [userMoviesIDs]);
 
@@ -56,7 +50,7 @@ const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   return (
     <div>
       <FavoriteMovieList
-        isBlockView = {isBlockView}
+        isBlockView={isBlockView}
         favoriteMovies={favoriteMovies}
         handleIsWatched={handleIsWatched}
         handleDeleteMovie={handleDeleteMovie}
