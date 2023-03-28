@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getGenresList, getLocalData, IGenre } from 'src/utils';
-import GenresList from './components/GenresList';
+import GenresList from './components/GenresList/GenresList';
 
 const GenresSelector = () => {
   const { i18n } = useTranslation();
@@ -15,7 +15,7 @@ const GenresSelector = () => {
     if (!genresId.includes(id)) {
       genresId.push(id);
     } else {
-      let genreId = genresId.indexOf(id);
+      const genreId = genresId.indexOf(id);
       genresId.splice(genreId, 1);
     }
     setGenresId([...genresId]);

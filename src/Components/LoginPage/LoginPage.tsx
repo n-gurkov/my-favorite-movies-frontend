@@ -6,7 +6,7 @@ import {
   LoginForm,
   FormWrapper,
   ButtonWrapper,
-} from "./assets/LoginPageStyledComponents";
+} from "./assets/styles";
 import LoginField from "./components/LoginField";
 import { useTranslation } from "react-i18next";
 import { checkPassword } from "../../utils";

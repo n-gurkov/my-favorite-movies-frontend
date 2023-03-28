@@ -25,7 +25,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path='/AddMoviePage' />
+        <Route path='/add-movie-page' />
       </Routes>
     </BrowserRouter>
   );

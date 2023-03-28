@@ -1,13 +1,17 @@
 import React from 'react';
 import {
-  MoviePresentList,
-  MovieWrapperList,
+  ButtonsWrapper,
   PictureCard,
-} from 'src/Components/MainPage/assets/MainPageStyledComponents';
+} from 'src/Components/MainPage/assets/styles';
 import { posterUrl } from 'src/urls';
 import { IFavoriteMovieProps, IMovie } from 'src/utils';
-import checkmark from 'src/Components/MainPage/assets/checkmark.svg';
-import cross from 'src/Components/MainPage/assets/cross.svg';
+import checkmark from './assets/checkmark.svg';
+import cross from './assets/cross.svg';
+import {
+  MovieCardButton,
+  MoviePresentList,
+  MovieWrapperList,
+} from './assets/styles';
 
 const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
   isBlockView,
@@ -24,21 +28,21 @@ const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
             key={movie.id}
             isWatched={movie.isWatched ? true : false}
           >
-            <PictureCard src={posterUrl + movie.poster_path} />
+            <PictureCard img={posterUrl + movie.poster_path} />
 
             <div>
               <h1>{movie.title}</h1>
               <span>{movie.overview}</span>
             </div>
 
-            <div>
-              <button onClick={() => handleIsWatched(index, movie.id)}>
+            <ButtonsWrapper>
+              <MovieCardButton onClick={() => handleIsWatched(index, movie.id)}>
                 <img src={checkmark} />
-              </button>
-              <button onClick={() => handleDeleteMovie(movie.id)}>
+              </MovieCardButton>
+              <MovieCardButton onClick={() => handleDeleteMovie(movie.id)}>
                 <img src={cross} />
-              </button>
-            </div>
+              </MovieCardButton>
+            </ButtonsWrapper>
           </MoviePresentList>
         );
       })}

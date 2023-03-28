@@ -1,15 +1,7 @@
-import React from "react";
-import {
-  GenreCard,
-  GenresWrapper,
-} from "src/Components/MainPage/assets/MainPageStyledComponents";
-import { IGenre } from "src/utils";
-
-interface IGenreListProps {
-  genres: IGenre[];
-  genresId: IGenre[];
-  handleGenres: (index: IGenre) => void;
-}
+import React from 'react';
+import { IGenre } from 'src/utils';
+import { GenreCard, GenresWrapper } from './assets/styles';
+import { IGenreListProps } from './assets/types';
 
 const GenresList: React.FC<IGenreListProps> = ({
   genres,
@@ -22,7 +14,7 @@ const GenresList: React.FC<IGenreListProps> = ({
         return (
           <GenreCard
             key={genre.id}
-            isChecked={genresId.includes(genre.id) ? true : false}
+            isChecked={genresId.includes(genre.id)}
             onClick={() => handleGenres(genre.id)}
           >
             {genre.name}

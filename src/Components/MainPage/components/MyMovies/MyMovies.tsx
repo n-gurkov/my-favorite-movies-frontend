@@ -7,7 +7,7 @@ import {
   getMovie,
   IMovie,
 } from 'src/utils';
-import FavoriteMovieList from './components/MyMoviesList';
+import FavoriteMovieList from './components/MyMoviesList/MyMoviesList';
 
 interface IFavoriteMovies {
   isBlockView: boolean;
@@ -17,16 +17,17 @@ const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   const [userMoviesIDs, setUserIDs] = useState<number[]>([]);
 
   useEffect(() => {
-    const watched: number[] = getLocalData('userMoviesIDs');
-    if (!watched.length) return;
+    // const watchedMovies: number[] = getLocalData('userMoviesIDs');
+    const watchedMovies: number[] = [100, 150];
+    if (!watchedMovies.length) return;
 
-    watched.map((id) =>
+    watchedMovies.map((id) =>
       getMovie(id, i18n.language).then((movie: IMovie) => {
         setFavoriteMovies((prev) =>
           prev.concat({
             ...movie,
             ...{
-              isWatched: watched.find((item: number) => item === movie.id)
+              isWatched: watchedMovies.find((item: number) => item === movie.id)
                 ? true
                 : false,
             },
@@ -48,14 +49,12 @@ const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   };
 
   return (
-    <div>
-      <FavoriteMovieList
-        isBlockView={isBlockView}
-        favoriteMovies={favoriteMovies}
-        handleIsWatched={handleIsWatched}
-        handleDeleteMovie={handleDeleteMovie}
-      />
-    </div>
+    <FavoriteMovieList
+      isBlockView={isBlockView}
+      favoriteMovies={favoriteMovies}
+      handleIsWatched={handleIsWatched}
+      handleDeleteMovie={handleDeleteMovie}
+    />
   );
 };
 

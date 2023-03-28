@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ButtonsWrapper,
+  CaptionWrapper,
   LogoutForm,
   MainPageButton,
   MainPageWrapper,
-} from './assets/MainPageStyledComponents';
-import { CaptionWrapper } from '../Header/assets/styles';
+} from './assets/styles';
 import GenresSelector from './components/GenresSelector/GenresSelector';
 import MyMovies from './components/MyMovies/MyMovies';
-import block from 'src/Components/MainPage/assets/block.svg';
-import list from 'src/Components/MainPage/assets/list.svg';
-import plus from 'src/Components/MainPage/assets/plus.svg';
+import block from './assets/block.svg';
+import list from './assets/list.svg';
+import plus from './assets/plus.svg';
 
 const MainPage = () => {
   const user = localStorage.getItem('currentUser');
@@ -20,7 +20,7 @@ const MainPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const AddMovie = () => {
-    navigate('/AddMoviePage');
+    navigate('/add-movie-page');
   };
   const [isBlockView, setView] = useState<boolean>(true);
   const LogOut = () => {
@@ -43,13 +43,13 @@ const MainPage = () => {
       </div>
       <ButtonsWrapper>
         <MainPageButton onClick={AddMovie}>
-          <img src={plus} />
+          <img src={plus} alt={t('mainPage.addButton')} />
         </MainPageButton>
         <MainPageButton onClick={() => setView(true)} isChecked={isBlockView}>
-          <img src={block} />
+          <img src={block} alt={t('mainPage.blockViewButton')} />
         </MainPageButton>
         <MainPageButton onClick={() => setView(false)} isChecked={!isBlockView}>
-          <img src={list} />
+          <img src={list} alt={t('mainPage.listViewButton')} />
         </MainPageButton>
       </ButtonsWrapper>
       <MyMovies isBlockView={isBlockView} />

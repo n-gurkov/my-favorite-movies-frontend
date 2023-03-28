@@ -1,21 +1,25 @@
- 
 {
-    "loginPage": {
-      "login": "login",
-      "password": "password",
-      "incorrectUser": "Incorrect login or password",
-      "emptyField": "Field must be filled",
-      "signIn": "Sign in"
-    },
-    "header":{
-      "ru": "Russian",
-      "en": "English"
-    },
-    "mainPage":{
-      "hello": "Hello",
-      "genres": "Select your favorite genres:",
-      "logout": "Logout",
-      "badURL": "Wrong URL",
-      "add": "Add"
-    }
+  "loginPage": {
+    "login": "login",
+    "password": "password",
+    "incorrectUser": "Incorrect login or password",
+    "emptyField": "Field must be filled",
+    "signIn": "Sign in"
+  },
+  "header": {
+    "ru": "Russian",
+    "en": "English",
+    "logo": "Click to go main page",
+    "title": "My favorite movies"
+  },
+  "mainPage": {
+    "hello": "Hello",
+    "genres": "Select your favorite genres:",
+    "logout": "Logout",
+    "badURL": "Wrong URL",
+    "add": "Add",
+    "addButton": "Add movies",
+    "blockViewButton": "Block view",
+    "listViewButton": "List view"
+  }
 }

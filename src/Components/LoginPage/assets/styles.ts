@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { CardWrapper } from "src/Components/styles/styles";
+import styled from 'styled-components';
+import { CardWrapper } from 'src/Components/styles/styles';
 
 export const LoginForm = styled(CardWrapper)`
   border-radius: 15px;
