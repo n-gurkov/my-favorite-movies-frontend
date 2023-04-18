@@ -6,7 +6,7 @@ export const HeaderWrapper = styled(CardWrapper)`
   margin: 1rem 15rem;
   justify-content: space-between;
   font-size: 25pt;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   user-select: none;
   cursor: pointer;
 `;

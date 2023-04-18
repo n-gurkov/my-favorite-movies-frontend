@@ -14,7 +14,7 @@ export const Header = () => {
       <LogoWrapper>
         <img src={logo} alt={t('header.logo')} />
       </LogoWrapper>
-      <p onClick={() => navigate('/main-page')}>{t('header.title')}</p>
+      <a onClick={() => navigate('/main-page')}>{t('header.title')}</a>
       <Select
         defaultValue="en-US"
         onChange={(event) => i18n.changeLanguage(event.target.value as string)}

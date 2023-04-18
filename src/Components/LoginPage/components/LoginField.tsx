@@ -1,6 +1,6 @@
-import { Field } from "react-final-form";
-import TextField from "@mui/material/TextField";
-import { useTranslation } from "react-i18next";
+import { Field } from 'react-final-form';
+import TextField from '@mui/material/TextField';
+import { useTranslation } from 'react-i18next';
 
 const LoginField = (props: {
   name: string;
@@ -14,7 +14,7 @@ const LoginField = (props: {
         <div>
           <TextField
             {...input}
-            type={props.isPassword ? "password" : "text"}
+            type={props.isPassword ? 'password' : 'text'}
             placeholder={t(props.label)}
           />
           {(meta.error || meta.submitError) && meta.touched && (

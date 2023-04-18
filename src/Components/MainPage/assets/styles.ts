@@ -1,9 +1,18 @@
 import styled from 'styled-components';
-import { CardWrapper } from 'src/Components/styles/styles';
+import { CardWrapper } from '../../styles/styles';
 
 export const LogoutForm = styled(CardWrapper)`
   padding: 0.5rem 1rem;
   margin-left: auto;
+`;
+
+export const LogoutLink = styled.a`
+  border-radius: 0.5rem;
+  border: 1px solid gray;
+  padding: 0.2rem;
+  margin: 0.5rem;
+  background-color: lightgray;
+  cursor: pointer;
 `;
 
 export const CaptionWrapper = styled(CardWrapper)`
@@ -49,6 +58,5 @@ export const PictureCard = styled.div<{
 }>`
   content: url(${(props) => props.img});
   max-width: 100%;
-
-  height: auto;
+  height: inherit;
 `;

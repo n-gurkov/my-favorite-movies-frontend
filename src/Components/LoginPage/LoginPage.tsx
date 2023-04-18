@@ -1,17 +1,13 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import { Form } from "react-final-form";
-import logo from "./assets/logo.svg";
-import {
-  LoginForm,
-  FormWrapper,
-  ButtonWrapper,
-} from "./assets/styles";
-import LoginField from "./components/LoginField";
-import { useTranslation } from "react-i18next";
-import { checkPassword } from "../../utils";
-import { FORM_ERROR } from "final-form";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import Button from '@mui/material/Button';
+import { Form } from 'react-final-form';
+import logo from './assets/logo.svg';
+import { LoginForm, FormWrapper, ButtonWrapper } from './assets/styles';
+import LoginField from './components/LoginField';
+import { useTranslation } from 'react-i18next';
+import { checkPassword } from '../../utils';
+import { FORM_ERROR } from 'final-form';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,9 +15,9 @@ const LoginPage = () => {
   const onSubmit = (input: { login: string; password: string }) => {
     const isMatchPassword = checkPassword(input.login, input.password);
     if (!isMatchPassword) {
-      return { [FORM_ERROR]: t("loginPage.incorrectUser") };
+      return { [FORM_ERROR]: t('loginPage.incorrectUser') };
     } else {
-      navigate("/main-page");
+      navigate('/main-page');
     }
   };
   return (
@@ -31,16 +27,16 @@ const LoginPage = () => {
         validate={(values) => {
           const errors: any = {};
           if (!values.login) {
-            errors.login = "loginPage.emptyField";
+            errors.login = 'loginPage.emptyField';
           }
           if (!values.password) {
-            errors.password = "loginPage.emptyField";
+            errors.password = 'loginPage.emptyField';
           }
           return errors;
         }}
         render={({ submitError, handleSubmit }) => (
           <LoginForm onSubmit={handleSubmit}>
-            <img src={logo} />
+            <img src={logo} alt={t('loginPage.logo')}/>
 
             <LoginField name="login" label="loginPage.login" />
 
@@ -52,7 +48,7 @@ const LoginPage = () => {
             {submitError && <h4> {submitError}</h4>}
             <ButtonWrapper>
               <Button type="submit" variant="contained" onClick={handleSubmit}>
-                {t("loginPage.signIn")}
+                {t('loginPage.signIn')}
               </Button>
             </ButtonWrapper>
           </LoginForm>

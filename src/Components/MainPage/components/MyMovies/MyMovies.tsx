@@ -12,22 +12,25 @@ import FavoriteMovieList from './components/MyMoviesList/MyMoviesList';
 interface IFavoriteMovies {
   isBlockView: boolean;
 }
+localStorage.setItem('userMoviesIDs', JSON.stringify([103, 15, 234]));
 const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   const [favoriteMovies, setFavoriteMovies] = useState<IMovie[]>([]);
   const [userMoviesIDs, setUserIDs] = useState<number[]>([]);
 
   useEffect(() => {
-    // const watchedMovies: number[] = getLocalData('userMoviesIDs');
-    const watchedMovies: number[] = [100, 150];
-    if (!watchedMovies.length) return;
+    const favoriteMovies: number[] = getLocalData('userMoviesIDs');
+    if (!favoriteMovies.length) return;
 
-    watchedMovies.map((id) =>
+    favoriteMovies.map((id) =>
       getMovie(id, i18n.language).then((movie: IMovie) => {
         setFavoriteMovies((prev) =>
           prev.concat({
             ...movie,
+            posterPath: movie.poster_path,
             ...{
-              isWatched: watchedMovies.find((item: number) => item === movie.id)
+              isWatched: favoriteMovies.find(
+                (item: number) => item === movie.id
+              )
                 ? true
                 : false,
             },

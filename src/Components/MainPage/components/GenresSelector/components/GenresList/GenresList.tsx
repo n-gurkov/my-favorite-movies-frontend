@@ -1,5 +1,4 @@
 import React from 'react';
-import { IGenre } from 'src/utils';
 import { GenreCard, GenresWrapper } from './assets/styles';
 import { IGenreListProps } from './assets/types';
 

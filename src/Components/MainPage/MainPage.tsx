@@ -5,6 +5,7 @@ import {
   ButtonsWrapper,
   CaptionWrapper,
   LogoutForm,
+  LogoutLink,
   MainPageButton,
   MainPageWrapper,
 } from './assets/styles';
@@ -32,15 +33,15 @@ const MainPage = () => {
     <MainPageWrapper>
       <LogoutForm>
         {t('mainPage.hello')}, {user}!
-        <button onClick={LogOut}>{t('mainPage.logout')}</button>
+        <LogoutLink onClick={LogOut}>{t('mainPage.logout')}</LogoutLink>
       </LogoutForm>
 
       <CaptionWrapper>
         <p>{t('mainPage.genres')}</p>
       </CaptionWrapper>
-      <div>
-        <GenresSelector />
-      </div>
+
+      <GenresSelector />
+
       <ButtonsWrapper>
         <MainPageButton onClick={AddMovie}>
           <img src={plus} alt={t('mainPage.addButton')} />

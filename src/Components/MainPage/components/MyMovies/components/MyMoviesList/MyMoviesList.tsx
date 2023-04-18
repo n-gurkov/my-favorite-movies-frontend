@@ -10,7 +10,9 @@ import cross from './assets/cross.svg';
 import {
   MovieCardButton,
   MoviePresentList,
+  MovieTitle,
   MovieWrapperList,
+  TextWrapper,
 } from './assets/styles';
 
 const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
@@ -26,14 +28,14 @@ const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
           <MoviePresentList
             isBlockView={isBlockView}
             key={movie.id}
-            isWatched={movie.isWatched ? true : false}
+            isWatched={movie.isWatched}
           >
-            <PictureCard img={posterUrl + movie.poster_path} />
+            <PictureCard img={posterUrl + movie.posterPath} />
 
-            <div>
-              <h1>{movie.title}</h1>
+            <TextWrapper isBlockView={isBlockView}>
+              <MovieTitle isBlockView={isBlockView}>{movie.title}</MovieTitle>
               <span>{movie.overview}</span>
-            </div>
+            </TextWrapper>
 
             <ButtonsWrapper>
               <MovieCardButton onClick={() => handleIsWatched(index, movie.id)}>
