@@ -11,8 +11,9 @@ export const initUsers = () => {
 };
 
 export const getLocalData = (key: string) => {
-  return localStorage.getItem(key)
-    ? JSON.parse(localStorage.getItem(key) || '')
+  const data = localStorage.getItem(key)
+  return data != null
+    ? JSON.parse(data)
     : [];
 };
 
@@ -85,27 +86,23 @@ export const getMovie = (movieId: number, language?: string) => {
     });
 };
 
-const checkAdding = (watched: number[], id: number): number[] => {
-  if (watched.find((item) => item === id)) {
-    watched = watched.filter((item) => item !== id);
+const addOrDeleteItem = (list: number[], item: number): number[] => {
+  let newList = list;
+  if (list.find((element) => element === item)) {
+    newList = list.filter((element) => element !== item);
   } else {
-    watched.push(id);
+    newList.push(item);
   }
-  return watched;
+  console.log(item);
+  return newList;
 };
 
-export const addWatched = (id: number) => {
-  if (localStorage.getItem('watchedMovies') === null) {
-    localStorage.setItem('watchedMovies', JSON.stringify([id]));
-  } else {
-    let watched: number[] = JSON.parse(
-      localStorage.getItem('watchedMovies') || ''
-    );
-    localStorage.setItem(
-      'watchedMovies',
-      JSON.stringify(checkAdding(watched, id))
-    );
-  }
+export const toggleWatched = (id: number) => {
+  const watched: number[] =getLocalData('watchedMovies');
+  localStorage.setItem(
+    'watchedMovies',
+    JSON.stringify(addOrDeleteItem(watched, id))
+  );
 };
 
 export const deleteFavorite = (id: number) => {
@@ -115,12 +112,15 @@ export const deleteFavorite = (id: number) => {
   localStorage.setItem('userMoviesIDs', JSON.stringify(remove));
 };
 
-export interface IMovie {
+export interface IMovieResponse {
   id: number;
   title: string;
-  posterPath: string;
   poster_path: string;
   overview: string;
+}
+
+export interface IMovie extends Omit<IMovieResponse, 'poster_path'> {
+  posterPath: string;
   isWatched: boolean;
 }
 

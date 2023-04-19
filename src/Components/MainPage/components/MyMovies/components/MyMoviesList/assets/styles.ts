@@ -15,6 +15,7 @@ export const MoviePresentList = styled(CardWrapper)<{
   margin: 10px;
   padding: 10px;
   box-shadow: 0 0 2px;
+  max-width: ${(props) => (props.isBlockView ? '300px' : 'none')};
   height: ${(props) => (props.isBlockView ? 'none' : '15rem')};
   flex-direction: ${(props) => (props.isBlockView ? 'column' : 'row')};
   opacity: ${(props) => (props.isWatched ? '0.5' : '1')};

@@ -51,6 +51,7 @@ export const MainPageButton = styled.button<{
 export const MainPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const PictureCard = styled.div<{

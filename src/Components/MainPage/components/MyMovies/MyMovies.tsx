@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import i18n from 'src/i18n';
 import {
-  addWatched,
+  toggleWatched,
   deleteFavorite,
   getLocalData,
   getMovie,
   IMovie,
+  IMovieResponse,
 } from 'src/utils';
 import FavoriteMovieList from './components/MyMoviesList/MyMoviesList';
 
@@ -15,30 +16,23 @@ interface IFavoriteMovies {
 localStorage.setItem('userMoviesIDs', JSON.stringify([103, 15, 234]));
 const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   const [favoriteMovies, setFavoriteMovies] = useState<IMovie[]>([]);
-  const [userMoviesIDs, setUserIDs] = useState<number[]>([]);
 
   useEffect(() => {
-    const favoriteMovies: number[] = getLocalData('userMoviesIDs');
-    if (!favoriteMovies.length) return;
-
-    favoriteMovies.map((id) =>
-      getMovie(id, i18n.language).then((movie: IMovie) => {
+    const userMoviesIDs = getLocalData('userMoviesIDs');
+    if (!userMoviesIDs.length) return;
+    const watchedIds = getLocalData('watchedMovies');
+    userMoviesIDs.map((id: number) =>
+      getMovie(id, i18n.language).then((movie: IMovieResponse) => {
         setFavoriteMovies((prev) =>
           prev.concat({
             ...movie,
             posterPath: movie.poster_path,
-            ...{
-              isWatched: favoriteMovies.find(
-                (item: number) => item === movie.id
-              )
-                ? true
-                : false,
-            },
+            isWatched: watchedIds.includes(movie.id) ? true : false,
           })
         );
       })
     );
-  }, [userMoviesIDs]);
+  }, []);
 
   const handleDeleteMovie = (id: number) => {
     deleteFavorite(id);
@@ -46,7 +40,7 @@ const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   };
 
   const handleIsWatched = (index: number, id: number) => {
-    addWatched(id);
+    toggleWatched(id);
     favoriteMovies[index].isWatched = !favoriteMovies[index].isWatched;
     setFavoriteMovies([...favoriteMovies]);
   };
