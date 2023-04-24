@@ -13,7 +13,8 @@ import FavoriteMovieList from './components/MyMoviesList/MyMoviesList';
 interface IFavoriteMovies {
   isBlockView: boolean;
 }
-localStorage.setItem('userMoviesIDs', JSON.stringify([103, 15, 234]));
+const USER_MOVIES_IDS = [103, 15, 234, 24, 255, 77, 78, 28, 11];
+localStorage.setItem('userMoviesIDs', JSON.stringify(USER_MOVIES_IDS));
 const MyMovies: React.FC<IFavoriteMovies> = ({ isBlockView }) => {
   const [favoriteMovies, setFavoriteMovies] = useState<IMovie[]>([]);
 

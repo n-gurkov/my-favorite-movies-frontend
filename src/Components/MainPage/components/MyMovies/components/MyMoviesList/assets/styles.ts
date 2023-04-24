@@ -4,6 +4,8 @@ import styled from 'styled-components';
 export const MovieWrapperList = styled.div<{ isBlockView: boolean }>`
   display: flex;
   flex-wrap: wrap;
+  padding: 0 2rem;
+  justify-content: space-between;
   flex-direction: ${(props) => (props.isBlockView ? 'row' : 'column')};
 `;
 
@@ -11,17 +13,15 @@ export const MoviePresentList = styled(CardWrapper)<{
   isWatched: boolean;
   isBlockView: boolean;
 }>`
-  display: flex;
+  display: ${(props) => (props.isBlockView ? 'grid' : 'flex')};
+  grid-template-rows: 450px auto 60px;
+  align-items: flex-start;
   margin: 10px;
   padding: 10px;
   box-shadow: 0 0 2px;
-  max-width: ${(props) => (props.isBlockView ? '300px' : 'none')};
+  width: ${(props) => (props.isBlockView ? '19rem' : 'none')};
   height: ${(props) => (props.isBlockView ? 'none' : '15rem')};
-  flex-direction: ${(props) => (props.isBlockView ? 'column' : 'row')};
   opacity: ${(props) => (props.isWatched ? '0.5' : '1')};
-  justify-content: ${(props) => (props.isBlockView ? 'space-between' : 'none')};
-  flex-wrap: ${(props) => (props.isBlockView ? 'wrap' : 'none')};
-  width: ${(props) => (props.isBlockView ? '30%;' : '98%;')};
 `;
 
 export const TextWrapper = styled.div<{ isBlockView: boolean }>`

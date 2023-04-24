@@ -11,10 +11,8 @@ export const initUsers = () => {
 };
 
 export const getLocalData = (key: string) => {
-  const data = localStorage.getItem(key)
-  return data != null
-    ? JSON.parse(data)
-    : [];
+  const data = localStorage.getItem(key);
+  return data != null ? JSON.parse(data) : [];
 };
 
 export const checkPassword = (login: string, password: string) => {
@@ -93,12 +91,11 @@ const addOrDeleteItem = (list: number[], item: number): number[] => {
   } else {
     newList.push(item);
   }
-  console.log(item);
   return newList;
 };
 
 export const toggleWatched = (id: number) => {
-  const watched: number[] =getLocalData('watchedMovies');
+  const watched: number[] = getLocalData('watchedMovies');
   localStorage.setItem(
     'watchedMovies',
     JSON.stringify(addOrDeleteItem(watched, id))
@@ -106,7 +103,7 @@ export const toggleWatched = (id: number) => {
 };
 
 export const deleteFavorite = (id: number) => {
-  let remove = getLocalData('userMoviesIDs').filter(
+  const remove = getLocalData('userMoviesIDs').filter(
     (item: number) => item !== id
   );
   localStorage.setItem('userMoviesIDs', JSON.stringify(remove));
