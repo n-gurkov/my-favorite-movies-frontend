@@ -12,7 +12,7 @@ export const initUsers = () => {
 
 export const getLocalData = (key: string) => {
   const data = localStorage.getItem(key);
-  return data != null ? JSON.parse(data) : [];
+  return data !== null ? JSON.parse(data) : [];
 };
 
 export const checkPassword = (login: string, password: string) => {
