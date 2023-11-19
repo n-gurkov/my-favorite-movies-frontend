@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import { CardWrapper } from '../../styles/styles';
+import styled from 'styled-components'
+import { CardWrapper } from '../../styles/styles'
 
 export const LogoutForm = styled(CardWrapper)`
   padding: 0.5rem 1rem;
   margin-left: auto;
-`;
+`
 
 export const LogoutLink = styled.a`
   border-radius: 0.5rem;
@@ -13,7 +13,7 @@ export const LogoutLink = styled.a`
   margin: 0.5rem;
   background-color: lightgray;
   cursor: pointer;
-`;
+`
 
 export const CaptionWrapper = styled(CardWrapper)`
   display: flex;
@@ -24,7 +24,7 @@ export const CaptionWrapper = styled(CardWrapper)`
   width: auto;
   user-select: none;
   cursor: default;
-`;
+`
 
 export const ButtonsWrapper = styled(CardWrapper)`
   padding: 0.5rem 1rem;
@@ -32,10 +32,10 @@ export const ButtonsWrapper = styled(CardWrapper)`
   position: static;
   justify-content: flex-end;
   margin-left: auto;
-`;
+`
 
 export const MainPageButton = styled.button<{
-  isChecked?: boolean;
+  isChecked?: boolean
 }>`
   background: ${(props) => (props.isChecked ? '#afd2ff' : '#e7eff9')};
   box-shadow: ${(props) => (props.isChecked ? '0px 0px 10px gray' : 'none')};
@@ -46,18 +46,18 @@ export const MainPageButton = styled.button<{
   cursor: pointer;
   width: 30px;
   height: 30px;
-`;
+`
 
 export const MainPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 export const PictureCard = styled.div<{
-  img: string;
+  img: string
 }>`
   content: url(${(props) => props.img});
   max-width: 100%;
   height: inherit;
-`;
+`

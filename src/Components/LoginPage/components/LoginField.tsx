@@ -1,13 +1,13 @@
-import { Field } from 'react-final-form';
-import TextField from '@mui/material/TextField';
-import { useTranslation } from 'react-i18next';
+import { Field } from 'react-final-form'
+import TextField from '@mui/material/TextField'
+import { useTranslation } from 'react-i18next'
 
 const LoginField = (props: {
-  name: string;
-  isPassword?: boolean;
-  label: string;
+  name: string
+  isPassword?: boolean
+  label: string
 }) => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation()
   return (
     <Field name={props.name}>
       {({ input, meta }) => (
@@ -23,7 +23,7 @@ const LoginField = (props: {
         </div>
       )}
     </Field>
-  );
-};
+  )
+}
 
-export default LoginField;
+export default LoginField

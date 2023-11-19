@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { CardWrapper } from 'src/Components/styles/styles';
+import styled from 'styled-components'
+import { CardWrapper } from 'src/Components/styles/styles'
 
 export const HeaderWrapper = styled(CardWrapper)`
   display: flex;
@@ -9,9 +9,9 @@ export const HeaderWrapper = styled(CardWrapper)`
   padding: 1rem;
   user-select: none;
   cursor: pointer;
-`;
+`
 
 export const LogoWrapper = styled.div`
   width: 55px;
   height: 55px;
-`;
+`

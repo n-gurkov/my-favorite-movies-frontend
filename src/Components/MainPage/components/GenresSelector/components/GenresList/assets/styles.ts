@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const GenreCard = styled.div<{ isChecked?: boolean }>`
   width: 25%;
@@ -10,11 +10,11 @@ export const GenreCard = styled.div<{ isChecked?: boolean }>`
   margin: 5px;
   padding: 5px;
   cursor: pointer;
-`;
+`
 
 export const GenresWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: auto;
   justify-content: center;
-`;
+`

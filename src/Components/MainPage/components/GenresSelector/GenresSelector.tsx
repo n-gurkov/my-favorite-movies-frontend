@@ -1,33 +1,34 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { getGenresList } from 'src/utils';
-import { IGenre } from './components/GenresList/assets/types';
-import GenresList from './components/GenresList/GenresList';
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { getGenresList } from 'src/utils'
+import { IGenre } from './components/GenresList/assets/types'
+import GenresList from './components/GenresList/GenresList'
 
 const GenresSelector = () => {
-  const { i18n } = useTranslation();
-  const [genres, setGenres] = useState<IGenre[]>([]);
-  const [genresId, setGenresId] = useState<number[]>([]);
+  const { i18n } = useTranslation()
+  const [genres, setGenres] = useState<IGenre[]>([])
+  const [genresId, setGenresId] = useState<number[]>([])
+
   useEffect(() => {
-    getGenresList(i18n.language).then((data) => setGenres(data));
-  }, [i18n.language]);
+    getGenresList(i18n.language).then((data) => setGenres(data))
+  }, [i18n.language])
 
   const handleGenres = (id: number) => {
     if (!genresId.includes(id)) {
-      genresId.push(id);
+      genresId.push(id)
     } else {
-      const genreId = genresId.indexOf(id);
-      genresId.splice(genreId, 1);
+      const genreId = genresId.indexOf(id)
+      genresId.splice(genreId, 1)
     }
-    setGenresId([...genresId]);
-    localStorage.setItem('userGenres', JSON.stringify(genres));
-  };
+    setGenresId([...genresId])
+    localStorage.setItem('userGenres', JSON.stringify(genres))
+  }
   return (
     <GenresList
       genres={genres}
       genresId={genresId}
       handleGenres={handleGenres}
     />
-  );
-};
-export default GenresSelector;
+  )
+}
+export default GenresSelector

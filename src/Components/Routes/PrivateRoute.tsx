@@ -1,13 +1,13 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { getLocalData } from 'src/utils';
+import { Navigate, useLocation } from 'react-router-dom'
+import { getLocalData } from 'src/utils'
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
-  const isLogged = getLocalData('isLogged');
-  const location = useLocation();
+  const isLogged = getLocalData('isLogged')
+  const location = useLocation()
   if (!isLogged) {
-    return <Navigate to='/' state={{ from: location }} replace={true} />;
+    return <Navigate to="/" state={{ from: location }} replace={true} />
   }
-  return children;
-};
+  return children
+}
 
-export default PrivateRoute;
+export default PrivateRoute

@@ -1,5 +1,5 @@
-import { CardWrapper } from 'src/Components/styles/styles';
-import styled from 'styled-components';
+import { CardWrapper } from 'src/Components/styles/styles'
+import styled from 'styled-components'
 
 export const MovieWrapperList = styled.div<{ isBlockView: boolean }>`
   display: flex;
@@ -7,11 +7,11 @@ export const MovieWrapperList = styled.div<{ isBlockView: boolean }>`
   padding: 0 2rem;
   justify-content: space-between;
   flex-direction: ${(props) => (props.isBlockView ? 'row' : 'column')};
-`;
+`
 
 export const MoviePresentList = styled(CardWrapper)<{
-  isWatched: boolean;
-  isBlockView: boolean;
+  isWatched: boolean
+  isBlockView: boolean
 }>`
   display: ${(props) => (props.isBlockView ? 'grid' : 'flex')};
   grid-template-rows: 450px auto 60px;
@@ -22,16 +22,16 @@ export const MoviePresentList = styled(CardWrapper)<{
   width: ${(props) => (props.isBlockView ? '19rem' : 'none')};
   height: ${(props) => (props.isBlockView ? 'none' : '15rem')};
   opacity: ${(props) => (props.isWatched ? '0.5' : '1')};
-`;
+`
 
 export const TextWrapper = styled.div<{ isBlockView: boolean }>`
   margin: ${(props) => (props.isBlockView ? '0.5rem' : '2rem')};
-`;
+`
 
 export const MovieTitle = styled.div<{ isBlockView: boolean }>`
   font-size: 25pt;
   padding-bottom: 3rem;
-`;
+`
 
 export const MovieCardButton = styled.button`
   border: 1px solid gray;
@@ -41,4 +41,4 @@ export const MovieCardButton = styled.button`
   cursor: pointer;
   width: 30px;
   height: 30px;
-`;
+`

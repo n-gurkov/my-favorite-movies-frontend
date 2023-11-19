@@ -1,6 +1,6 @@
-import React from 'react';
-import { GenreCard, GenresWrapper } from './assets/styles';
-import { IGenreListProps } from './assets/types';
+import React from 'react'
+import { GenreCard, GenresWrapper } from './assets/styles'
+import { IGenreListProps } from './assets/types'
 
 const GenresList: React.FC<IGenreListProps> = ({
   genres,
@@ -18,10 +18,10 @@ const GenresList: React.FC<IGenreListProps> = ({
           >
             {genre.name}
           </GenreCard>
-        );
+        )
       })}
     </GenresWrapper>
-  );
-};
+  )
+}
 
-export default GenresList;
+export default GenresList
