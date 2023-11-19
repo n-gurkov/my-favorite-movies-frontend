@@ -1,6 +1,9 @@
 import React from 'react'
 import { GenreCard, GenresWrapper } from './assets/styles'
-import { IGenreListProps } from './assets/types'
+import {
+  IGenre,
+  IGenreListProps,
+} from '../../../../../../Components/Types/types'
 
 const GenresList: React.FC<IGenreListProps> = ({
   genres,
@@ -9,7 +12,7 @@ const GenresList: React.FC<IGenreListProps> = ({
 }) => {
   return (
     <GenresWrapper>
-      {genres.map((genre: any) => {
+      {genres.map((genre: IGenre) => {
         return (
           <GenreCard
             key={genre.id}

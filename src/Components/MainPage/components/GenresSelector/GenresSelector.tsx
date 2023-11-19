@@ -1,28 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { getGenresList } from 'src/utils'
-import { IGenre } from './components/GenresList/assets/types'
 import GenresList from './components/GenresList/GenresList'
+import useGenres from '../../../../Hooks/useGenres'
 
 const GenresSelector = () => {
-  const { i18n } = useTranslation()
-  const [genres, setGenres] = useState<IGenre[]>([])
-  const [genresId, setGenresId] = useState<number[]>([])
+  const { genres, genresId, handleGenres } = useGenres()
 
-  useEffect(() => {
-    getGenresList(i18n.language).then((data) => setGenres(data))
-  }, [i18n.language])
-
-  const handleGenres = (id: number) => {
-    if (!genresId.includes(id)) {
-      genresId.push(id)
-    } else {
-      const genreId = genresId.indexOf(id)
-      genresId.splice(genreId, 1)
-    }
-    setGenresId([...genresId])
-    localStorage.setItem('userGenres', JSON.stringify(genres))
-  }
   return (
     <GenresList
       genres={genres}

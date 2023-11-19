@@ -1,34 +1,34 @@
-import React from 'react';
+import React from 'react'
 import {
   ButtonsWrapper,
   PictureCard,
-} from 'src/Components/MainPage/assets/styles';
-import { posterUrl } from 'src/urls';
-import { IFavoriteMovieProps, IMovie } from 'src/utils';
-import checkmark from './assets/checkmark.svg';
-import cross from './assets/cross.svg';
+} from '../../../../../MainPage/assets/styles'
+import { posterUrl } from '../../../../../../urls'
+import { IFavoriteMovieProps, IMovie } from '../../../../../Types/types'
+import checkmark from './assets/checkmark.svg'
+import cross from './assets/cross.svg'
 import {
   MovieCardButton,
   MoviePresentList,
   MovieTitle,
   MovieWrapperList,
   TextWrapper,
-} from './assets/styles';
+} from './assets/styles'
+import useFavoriteMovies from 'src/Hooks/useFavoriteMovies'
 
 const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
   isBlockView,
   favoriteMovies,
-  handleIsWatched,
-  handleDeleteMovie,
 }) => {
+  const { watchedIds, handleDeleteMovie, handleIsWatched } = useFavoriteMovies()
   return (
     <MovieWrapperList isBlockView={isBlockView}>
-      {favoriteMovies.map((movie: IMovie, index: number) => {
+      {favoriteMovies.map((movie: IMovie) => {
         return (
           <MoviePresentList
             isBlockView={isBlockView}
             key={movie.id}
-            isWatched={movie.isWatched}
+            isWatched={watchedIds.includes(movie.id)}
           >
             <PictureCard img={posterUrl + movie.posterPath} />
 
@@ -38,7 +38,7 @@ const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
             </TextWrapper>
 
             <ButtonsWrapper>
-              <MovieCardButton onClick={() => handleIsWatched(index, movie.id)}>
+              <MovieCardButton onClick={() => handleIsWatched(movie.id)}>
                 <img src={checkmark} />
               </MovieCardButton>
               <MovieCardButton onClick={() => handleDeleteMovie(movie.id)}>
@@ -46,10 +46,10 @@ const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
               </MovieCardButton>
             </ButtonsWrapper>
           </MoviePresentList>
-        );
+        )
       })}
     </MovieWrapperList>
-  );
-};
+  )
+}
 
-export default FavoriteMovieList;
+export default FavoriteMovieList
