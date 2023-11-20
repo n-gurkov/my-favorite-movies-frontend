@@ -2,6 +2,7 @@ import { genresListUrl } from '../urls'
 import useLanguage from './useLanguage'
 import { useEffect, useState } from 'react'
 import { IGenre } from '../Components/Types/types'
+import { getLocalData } from 'src/utils'
 
 export const getGenresList = (language: string) => {
   return fetch(
@@ -16,14 +17,15 @@ export const getGenresList = (language: string) => {
       return data.genres
     })
     .catch(() => {
-      return {}
+      return []
     })
 }
 
 export default function useGenres() {
   const lang = useLanguage()
+  const userGenresIds = getLocalData('userGenres')
   const [genres, setGenres] = useState<IGenre[]>([])
-  const [genresId, setGenresId] = useState<number[]>([])
+  const [genresId, setGenresId] = useState<number[]>(userGenresIds)
 
   useEffect(() => {
     getGenresList(lang).then((data) => setGenres(data))

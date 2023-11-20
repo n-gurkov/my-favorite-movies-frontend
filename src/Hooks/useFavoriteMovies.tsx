@@ -6,6 +6,7 @@ import {
 } from '../Components/Types/types'
 import { movieUrl } from 'src/urls'
 import useLanguage from './useLanguage'
+import { getLocalData } from 'src/utils'
 
 const EXAMPLE_USER_MOVIES_IDS = [103, 15, 234, 24, 255, 77, 78, 28, 11]
 
@@ -40,7 +41,8 @@ export default function useFavoriteMovies(): UseMoviesOutput {
   const lang = useLanguage()
   const [moviesIds, setMoviesIds] = useState(EXAMPLE_USER_MOVIES_IDS)
   const [movies, setMovies] = useState<IMovie[]>([])
-  const [watchedIds, setWatchedIds] = useState<number[]>([])
+  const savedWatchedIds = getLocalData('watchedIds')
+  const [watchedIds, setWatchedIds] = useState<number[]>(savedWatchedIds)
 
   const handleDeleteMovie = (id: number): void => {
     setMoviesIds((prev) => prev.filter((item) => item !== id))
@@ -48,9 +50,11 @@ export default function useFavoriteMovies(): UseMoviesOutput {
 
   const handleIsWatched = (id: number): void => {
     const index = watchedIds.findIndex((item) => item === id)
-    if (index >= 0)
-      return setWatchedIds((prev) => prev.filter((item) => item !== id))
-    setWatchedIds([...watchedIds, id])
+    let nextWatchedIds = []
+    if (index >= 0) nextWatchedIds = watchedIds.filter((item) => item !== id)
+    else nextWatchedIds = [...watchedIds, id]
+    setWatchedIds(nextWatchedIds)
+    localStorage.setItem('watchedIds', JSON.stringify(nextWatchedIds))
   }
 
   const fetchAndFillMovies = useCallback(async () => {
