@@ -7,7 +7,7 @@ import {
 
 const GenresList: React.FC<IGenreListProps> = ({
   genres,
-  genresId,
+  genresIds,
   handleGenres,
 }) => {
   return (
@@ -16,7 +16,7 @@ const GenresList: React.FC<IGenreListProps> = ({
         return (
           <GenreCard
             key={genre.id}
-            isChecked={genresId.includes(genre.id)}
+            isChecked={genresIds.includes(genre.id)}
             onClick={() => handleGenres(genre.id)}
           >
             {genre.name}

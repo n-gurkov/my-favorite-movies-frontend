@@ -21,7 +21,7 @@ export interface IGenre {
 
 export interface IGenreListProps {
   genres: IGenre[]
-  genresId: number[]
+  genresIds: number[]
   handleGenres: (index: number) => void
 }
 
@@ -37,4 +37,9 @@ export interface UseMoviesOutput {
   setMoviesIds: React.Dispatch<SetStateAction<number[]>>
   handleDeleteMovie: (id: number) => void
   handleIsWatched: (id: number) => void
+}
+
+export interface loginFormInputErrors {
+  login?: string
+  password?: string
 }

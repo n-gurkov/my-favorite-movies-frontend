@@ -4,15 +4,16 @@ import logo from './assets/logo.svg'
 import { LoginForm, FormWrapper, ButtonWrapper } from './assets/styles'
 import LoginField from './components/LoginField'
 import { useTranslation } from 'react-i18next'
-import { checkPassword } from '../../utils'
+import { loginUser } from '../../utils'
 import { FORM_ERROR } from 'final-form'
 import { useNavigate } from 'react-router-dom'
+import { loginFormInputErrors } from '../Types/types'
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const onSubmit = (input: { login: string; password: string }) => {
-    const isMatchPassword = checkPassword(input.login, input.password)
+    const isMatchPassword = loginUser(input.login, input.password)
     if (!isMatchPassword) {
       return { [FORM_ERROR]: t('loginPage.incorrectUser') }
     } else {
@@ -24,7 +25,7 @@ const LoginPage = () => {
       <Form
         onSubmit={onSubmit}
         validate={(values) => {
-          const errors: any = {}
+          const errors: loginFormInputErrors = {}
           if (!values.login) {
             errors.login = 'loginPage.emptyField'
           }

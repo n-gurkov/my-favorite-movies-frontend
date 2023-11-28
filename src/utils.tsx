@@ -7,7 +7,9 @@ const users = {
 }
 
 export const initUsers = () => {
-  localStorage.setItem('users', JSON.stringify(users))
+  if (JSON.stringify(getLocalData('users')) !== JSON.stringify(users)) {
+    localStorage.setItem('users', JSON.stringify(users))
+  }
 }
 
 export const getLocalData = (key: string) => {
@@ -16,12 +18,15 @@ export const getLocalData = (key: string) => {
 }
 
 export const checkPassword = (login: string, password: string) => {
-  const users = getLocalData('users') || []
+  const userPassword = (getLocalData('users') || [])[login]
+  return userPassword === password
+}
 
-  if (password !== users[login]) {
+export const loginUser = (login: string, password: string) => {
+  if (!checkPassword(login, password)) {
     return false
   } else {
-    localStorage.setItem('currentUser', login)
+    localStorage.setItem('currentUser', JSON.stringify(login))
     localStorage.setItem('isLogged', 'true')
     return true
   }

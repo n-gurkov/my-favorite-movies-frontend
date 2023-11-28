@@ -50,9 +50,11 @@ export default function useFavoriteMovies(): UseMoviesOutput {
 
   const handleIsWatched = (id: number): void => {
     const index = watchedIds.findIndex((item) => item === id)
-    let nextWatchedIds = []
-    if (index >= 0) nextWatchedIds = watchedIds.filter((item) => item !== id)
-    else nextWatchedIds = [...watchedIds, id]
+    const nextWatchedIds =
+      index >= 0
+        ? watchedIds.filter((item) => item !== id)
+        : [...watchedIds, id]
+ 
     setWatchedIds(nextWatchedIds)
     localStorage.setItem('watchedIds', JSON.stringify(nextWatchedIds))
   }

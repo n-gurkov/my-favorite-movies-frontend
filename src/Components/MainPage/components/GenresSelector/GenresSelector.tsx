@@ -2,12 +2,12 @@ import GenresList from './components/GenresList/GenresList'
 import useGenres from '../../../../Hooks/useGenres'
 
 const GenresSelector = () => {
-  const { genres, genresId, handleGenres } = useGenres()
+  const { genres, genresIds, handleGenres } = useGenres()
 
   return (
     <GenresList
       genres={genres}
-      genresId={genresId}
+      genresIds={genresIds}
       handleGenres={handleGenres}
     />
   )

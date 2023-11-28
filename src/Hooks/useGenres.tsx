@@ -25,21 +25,21 @@ export default function useGenres() {
   const lang = useLanguage()
   const userGenresIds = getLocalData('userGenres')
   const [genres, setGenres] = useState<IGenre[]>([])
-  const [genresId, setGenresId] = useState<number[]>(userGenresIds)
+  const [genresIds, setGenresIds] = useState<number[]>(userGenresIds)
 
   useEffect(() => {
     getGenresList(lang).then((data) => setGenres(data))
   }, [lang])
 
   const handleGenres = (id: number) => {
-    if (!genresId.includes(id)) {
-      genresId.push(id)
+    const genreId = genresIds.indexOf(id)
+    if (genreId < 0) {
+      genresIds.push(id)
     } else {
-      const genreId = genresId.indexOf(id)
-      genresId.splice(genreId, 1)
+      genresIds.splice(genreId, 1)
     }
-    setGenresId([...genresId])
-    localStorage.setItem('userGenres', JSON.stringify(genresId))
+    setGenresIds([...genresIds])
+    localStorage.setItem('userGenres', JSON.stringify(genresIds))
   }
-  return { genres, genresId, handleGenres }
+  return { genres, genresIds, handleGenres }
 }

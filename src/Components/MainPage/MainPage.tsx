@@ -14,10 +14,10 @@ import MyMovies from './components/MyMovies/MyMovies'
 import block from './assets/block.svg'
 import list from './assets/list.svg'
 import plus from './assets/plus.svg'
-import { clearLogInData } from 'src/utils'
+import { clearLogInData, getLocalData } from 'src/utils'
 
 const MainPage = () => {
-  const user = localStorage.getItem('currentUser')
+  const user = getLocalData('currentUser')
 
   const navigate = useNavigate()
   const { t } = useTranslation()
