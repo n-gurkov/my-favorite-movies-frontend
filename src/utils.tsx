@@ -22,14 +22,14 @@ export const checkPassword = (login: string, password: string) => {
   return userPassword === password
 }
 
+export const fillCurrentUser = (login: string) => {
+  localStorage.setItem('currentUser', JSON.stringify(login))
+  localStorage.setItem('isLogged', 'true')
+  return true
+}
+
 export const loginUser = (login: string, password: string) => {
-  if (!checkPassword(login, password)) {
-    return false
-  } else {
-    localStorage.setItem('currentUser', JSON.stringify(login))
-    localStorage.setItem('isLogged', 'true')
-    return true
-  }
+  return checkPassword(login, password) && fillCurrentUser(login)
 }
 
 export const clearLogInData = () => {
