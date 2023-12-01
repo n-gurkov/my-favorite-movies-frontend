@@ -10,6 +10,10 @@ export const HeaderWrapper = styled(CardWrapper)`
   user-select: none;
   cursor: pointer;
 `
+export const MainPageLink = styled.a`
+  color: black;
+  text-decoration: none;
+`
 
 export const LogoWrapper = styled.div`
   width: 55px;

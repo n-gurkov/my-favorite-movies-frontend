@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next'
 import {
   ButtonsWrapper,
   CaptionWrapper,
+  Link,
   LogoutForm,
-  LogoutLink,
+  LogoutButton,
   MainPageButton,
   MainPageWrapper,
 } from './assets/styles'
@@ -21,20 +22,20 @@ const MainPage = () => {
 
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const AddMovie = () => {
-    navigate('/add-movie-page')
-  }
-  const [isBlockView, setView] = useState<boolean>(true)
+
+  const [isBlockView, setIsBlockView] = useState<boolean>(true)
   const logOut = () => {
     clearLogInData()
     navigate('/', { replace: true })
   }
+  const handleBlockViewButtonClick = () => setIsBlockView(true)
+  const handleListViewButtonClick = () => setIsBlockView(false)
 
   return (
     <MainPageWrapper>
       <LogoutForm>
         {t('mainPage.hello')}, {user}!
-        <LogoutLink onClick={logOut}>{t('mainPage.logout')}</LogoutLink>
+        <LogoutButton onClick={logOut}>{t('mainPage.logout')}</LogoutButton>
       </LogoutForm>
 
       <CaptionWrapper>
@@ -44,17 +45,17 @@ const MainPage = () => {
       <GenresSelector />
 
       <ButtonsWrapper>
-        <MainPageButton onClick={AddMovie}>
+        <Link href="/add-movie-page">
           <img src={plus} alt={t('mainPage.addButton')} />
-        </MainPageButton>
+        </Link>
         <MainPageButton
-          onClick={() => setView(isBlockView)}
+          onClick={handleBlockViewButtonClick}
           isChecked={isBlockView}
         >
           <img src={block} alt={t('mainPage.blockViewButton')} />
         </MainPageButton>
         <MainPageButton
-          onClick={() => setView(!isBlockView)}
+          onClick={handleListViewButtonClick}
           isChecked={!isBlockView}
         >
           <img src={list} alt={t('mainPage.listViewButton')} />

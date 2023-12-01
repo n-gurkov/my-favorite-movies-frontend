@@ -4,15 +4,7 @@ import { CardWrapper } from '../../styles/styles'
 export const LogoutForm = styled(CardWrapper)`
   padding: 0.5rem 1rem;
   margin-left: auto;
-`
-
-export const LogoutLink = styled.a`
-  border-radius: 0.5rem;
-  border: 1px solid gray;
-  padding: 0.2rem;
-  margin: 0.5rem;
-  background-color: lightgray;
-  cursor: pointer;
+  display: flex;
 `
 
 export const CaptionWrapper = styled(CardWrapper)`
@@ -34,6 +26,12 @@ export const ButtonsWrapper = styled(CardWrapper)`
   margin-left: auto;
 `
 
+export const LogoutButton = styled(ButtonsWrapper)`
+  padding: 0.2rem;
+  margin: 0.5rem;
+  cursor: pointer;
+`
+
 export const MainPageButton = styled.button<{
   isChecked?: boolean
 }>`
@@ -46,6 +44,19 @@ export const MainPageButton = styled.button<{
   cursor: pointer;
   width: 30px;
   height: 30px;
+`
+
+export const Link = styled.a`
+  background: '#afd2ff';
+  box-shadow: '0px 0px 10px gray';
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
 `
 
 export const MainPageWrapper = styled.div`

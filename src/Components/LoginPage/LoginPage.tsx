@@ -43,7 +43,7 @@ const LoginPage = () => {
             <LoginField
               name="password"
               label="loginPage.password"
-              isPassword={true}
+              type="password"
             />
             {submitError && <h4> {submitError}</h4>}
             <ButtonWrapper>
