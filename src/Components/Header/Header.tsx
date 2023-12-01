@@ -1,26 +1,25 @@
-import { MenuItem, Select } from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import i18n from "../../i18n";
-import logo from "../LoginPage/assets/logo.svg";
-import { HeaderWrapper, LogoWrapper } from "./assets/styles";
+import { MenuItem, Select } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import logo from '../LoginPage/assets/logo.svg'
+import { HeaderWrapper, LogoWrapper, MainPageLink } from './assets/styles'
 
 export const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation()
+
   return (
     <HeaderWrapper>
       <LogoWrapper>
-        <img src={logo} />
+        <img src={logo} alt={t('header.logo')} />
       </LogoWrapper>
-      My favorite movies
+      <MainPageLink href="/main-page">{t('header.title')}</MainPageLink>
       <Select
         defaultValue="en-US"
         onChange={(event) => i18n.changeLanguage(event.target.value as string)}
       >
-        <MenuItem value="en-US">{t("header.en")}</MenuItem>
+        <MenuItem value="en-US">{t('header.en')}</MenuItem>
 
-        <MenuItem value="ru-RU">{t("header.ru")}</MenuItem>
+        <MenuItem value="ru-RU">{t('header.ru')}</MenuItem>
       </Select>
     </HeaderWrapper>
-  );
-};
+  )
+}

@@ -1,45 +1,41 @@
-import { genresListUrl, moviesListUrl, movieUrl } from "./urls";
+import { moviesListUrl } from './urls'
 
 const users = {
-  admin: "12345",
-  user: "12345",
-};
+  admin: '12345',
+  user: '12345',
+  test: 'test',
+}
 
 export const initUsers = () => {
-  localStorage.setItem("users", JSON.stringify(users));
-};
+  if (JSON.stringify(getLocalData('users')) !== JSON.stringify(users)) {
+    localStorage.setItem('users', JSON.stringify(users))
+  }
+}
 
 export const getLocalData = (key: string) => {
-  return localStorage.getItem(key)
-    ? JSON.parse(localStorage.getItem(key) || "")
-    : [];
-};
+  const data = localStorage.getItem(key)
+  return data !== null ? JSON.parse(data) : []
+}
 
 export const checkPassword = (login: string, password: string) => {
-  const users = getLocalData("users") || [];
+  const userPassword = (getLocalData('users') || [])[login]
+  return userPassword === password
+}
 
-  if (password !== users[login]) return false;
-  {
-    localStorage.setItem("currentUser", login);
-    return true;
-  }
-};
+export const fillCurrentUser = (login: string) => {
+  localStorage.setItem('currentUser', JSON.stringify(login))
+  localStorage.setItem('isLogged', 'true')
+  return true
+}
 
-export const getGenresList = (language: string) => {
-  return fetch(
-    `${genresListUrl}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`,
-    { method: "GET" }
-  )
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      return data.genres;
-    })
-    .catch(() => {
-      return {};
-    });
-};
+export const loginUser = (login: string, password: string) => {
+  return checkPassword(login, password) && fillCurrentUser(login)
+}
+
+export const clearLogInData = () => {
+  localStorage.removeItem('currentUser')
+  localStorage.setItem('isLogged', 'false')
+}
 
 export const getMoviesList = (
   page: number,
@@ -50,31 +46,16 @@ export const getMoviesList = (
 ) => {
   return fetch(
     `${moviesListUrl}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&with_genres=${withGenres}&year=${year}&vote_average.gte=${rating}&page=${page}`,
-    { method: "GET" }
-  )
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch(() => {
-      return {};
-    });
-};
 
-export const getMovie = (movieId: number, language?: string) => {
-  return fetch(
-    `${movieUrl}${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`,
-    { method: "GET" }
+    { method: 'GET' }
   )
     .then((response) => {
-      return response.json();
+      return response.json()
     })
     .then((data) => {
-      return data;
+      return data
     })
     .catch(() => {
-      return {};
-    });
-};
+      return {}
+    })
+}

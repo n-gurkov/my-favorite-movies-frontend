@@ -1,22 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import LoginPage from "./Components/LoginPage/LoginPage";
-import { initUsers } from "./utils";
-import { Header } from "./Components/Header/Header";
-import { HeaderWrapper } from './Components/Header/assets/styles';
+import './App.css'
+import LoginPage from './Components/LoginPage/LoginPage'
+import { initUsers } from './utils'
+import { Header } from './Components/Header/Header'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import MainPage from './Components/MainPage/MainPage'
+import PrivateRoute from './Components/Routes/PrivateRoute'
+import { useTranslation } from 'react-i18next'
 
 function App() {
-  initUsers();
+  initUsers()
+  const { t } = useTranslation()
   return (
-    <div>
-     
+    <BrowserRouter>
       <Header />
-     
-
-      <LoginPage />
-    </div>
-  );
+      <Routes>
+        <Route path="*" element={<h1>{t('mainPage.badURL')}</h1>} />
+        <Route path="/" element={<LoginPage />} />
+        <Route
+          path="/main-page"
+          element={
+            <PrivateRoute>
+              <MainPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/add-movie-page" />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
