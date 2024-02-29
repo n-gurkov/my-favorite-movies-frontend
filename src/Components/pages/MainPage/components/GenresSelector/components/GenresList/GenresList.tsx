@@ -1,9 +1,6 @@
 import React from 'react'
 import { GenreCard, GenresWrapper } from './assets/styles'
-import {
-  IGenre,
-  IGenreListProps,
-} from '../../../../../../Components/Types/types'
+import { IGenre, IGenreListProps } from '../../../../../../Types/types'
 
 const GenresList: React.FC<IGenreListProps> = ({
   genres,

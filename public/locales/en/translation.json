@@ -21,6 +21,8 @@
     "add": "Add",
     "addButton": "Add movies",
     "blockViewButton": "Block view",
-    "listViewButton": "List view"
+    "listViewButton": "List view",
+    "rating": "Rating",
+    "year": "Year"
   }
 }

@@ -5,22 +5,21 @@ export const MovieWrapperList = styled.div<{ isBlockView: boolean }>`
   display: flex;
   flex-wrap: wrap;
   padding: 0 2rem;
-  justify-content: space-between;
+  gap: 35px;
   flex-direction: ${(props) => (props.isBlockView ? 'row' : 'column')};
 `
 
 export const MoviePresentList = styled(CardWrapper)<{
-  isWatched: boolean
+  isWatched?: boolean
   isBlockView: boolean
 }>`
   display: ${(props) => (props.isBlockView ? 'grid' : 'flex')};
   grid-template-rows: 450px auto 60px;
   align-items: flex-start;
-  margin: 10px;
+  margin: 10px 0;
   padding: 10px;
   box-shadow: 0 0 2px;
-  width: ${(props) => (props.isBlockView ? '19rem' : 'none')};
-  height: ${(props) => (props.isBlockView ? 'none' : '15rem')};
+  width: ${(props) => (props.isBlockView ? '19rem' : 'auto')};
   opacity: ${(props) => (props.isWatched ? '0.5' : '1')};
 `
 
@@ -30,7 +29,7 @@ export const TextWrapper = styled.div<{ isBlockView: boolean }>`
 
 export const MovieTitle = styled.div<{ isBlockView: boolean }>`
   font-size: 25pt;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
 `
 
 export const MovieCardButton = styled.button`

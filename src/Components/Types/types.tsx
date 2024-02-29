@@ -1,5 +1,10 @@
 import { SetStateAction } from 'react'
 
+export interface IMoviesResponse {
+  results: IMovieResponse[]
+  total_pages: number
+}
+
 export interface IMovieResponse {
   id: number
   title: string
@@ -27,8 +32,6 @@ export interface IGenreListProps {
 
 export interface IFavoriteMovieProps {
   isBlockView: boolean
-  favoriteMovies: IMovie[]
-  handleDeleteMovie: (id: number) => void
 }
 
 export interface UseMoviesOutput {
