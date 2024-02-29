@@ -8,8 +8,6 @@ import { movieUrl } from 'src/urls'
 import useLanguage from './useLanguage'
 import { getLocalData } from 'src/utils'
 
-const EXAMPLE_USER_MOVIES_IDS = [103, 15, 234, 24, 255, 77, 78, 28, 11]
-
 const getMovie = async (
   movieId: number,
   language?: string
@@ -39,7 +37,8 @@ const normalizeData = (data: IMovieResponse[]): IMovie[] => {
 
 export default function useFavoriteMovies(): UseMoviesOutput {
   const lang = useLanguage()
-  const [moviesIds, setMoviesIds] = useState(EXAMPLE_USER_MOVIES_IDS)
+  const userMoviesIds = getLocalData('userMoviesIDs')
+  const [moviesIds, setMoviesIds] = useState<number[]>(userMoviesIds)
   const [movies, setMovies] = useState<IMovie[]>([])
   const savedWatchedIds = getLocalData('watchedIds')
   const [watchedIds, setWatchedIds] = useState<number[]>(savedWatchedIds)
@@ -54,7 +53,6 @@ export default function useFavoriteMovies(): UseMoviesOutput {
       index >= 0
         ? watchedIds.filter((item) => item !== id)
         : [...watchedIds, id]
- 
     setWatchedIds(nextWatchedIds)
     localStorage.setItem('watchedIds', JSON.stringify(nextWatchedIds))
   }
@@ -68,7 +66,9 @@ export default function useFavoriteMovies(): UseMoviesOutput {
     )
 
     const normalizedData = normalizeData(fetchedMovies)
+
     setMovies(normalizedData)
+
     localStorage.setItem('userMoviesIDs', JSON.stringify(moviesIds))
   }, [lang, moviesIds])
 

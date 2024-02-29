@@ -1,11 +1,5 @@
 import styled from 'styled-components'
-import { CardWrapper } from '../../styles/styles'
-
-export const LogoutForm = styled(CardWrapper)`
-  padding: 0.5rem 1rem;
-  margin-left: auto;
-  display: flex;
-`
+import { CardWrapper } from '../../../styles/styles'
 
 export const CaptionWrapper = styled(CardWrapper)`
   display: flex;
@@ -24,12 +18,6 @@ export const ButtonsWrapper = styled(CardWrapper)`
   position: static;
   justify-content: flex-end;
   margin-left: auto;
-`
-
-export const LogoutButton = styled(ButtonsWrapper)`
-  padding: 0.2rem;
-  margin: 0.5rem;
-  cursor: pointer;
 `
 
 export const MainPageButton = styled.button<{
@@ -67,8 +55,9 @@ export const MainPageWrapper = styled.div`
 
 export const PictureCard = styled.div<{
   img: string
+  isBlockView: boolean
 }>`
   content: url(${(props) => props.img});
   max-width: 100%;
-  height: inherit;
+  height: ${(props) => (props.isBlockView ? 'none' : '300px')};
 `

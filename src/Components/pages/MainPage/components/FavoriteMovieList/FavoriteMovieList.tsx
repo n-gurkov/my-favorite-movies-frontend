@@ -1,10 +1,7 @@
 import React from 'react'
-import {
-  ButtonsWrapper,
-  PictureCard,
-} from '../../../../../MainPage/assets/styles'
-import { posterUrl } from '../../../../../../urls'
-import { IFavoriteMovieProps, IMovie } from '../../../../../Types/types'
+import { ButtonsWrapper, PictureCard } from '../../assets/styles'
+import { posterUrl } from '../../../../../urls'
+import { IFavoriteMovieProps, IMovie } from '../../../../Types/types'
 import checkmark from './assets/checkmark.svg'
 import cross from './assets/cross.svg'
 import {
@@ -16,21 +13,22 @@ import {
 } from './assets/styles'
 import useFavoriteMovies from 'src/Hooks/useFavoriteMovies'
 
-const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({
-  isBlockView,
-  favoriteMovies,
-}) => {
-  const { watchedIds, handleDeleteMovie, handleIsWatched } = useFavoriteMovies()
+const FavoriteMovieList: React.FC<IFavoriteMovieProps> = ({ isBlockView }) => {
+  const { watchedIds, movies, handleDeleteMovie, handleIsWatched } =
+    useFavoriteMovies()
   return (
     <MovieWrapperList isBlockView={isBlockView}>
-      {favoriteMovies.map((movie: IMovie) => {
+      {movies.map((movie: IMovie) => {
         return (
           <MoviePresentList
             isBlockView={isBlockView}
             key={movie.id}
             isWatched={watchedIds.includes(movie.id)}
           >
-            <PictureCard img={posterUrl + movie.posterPath} />
+            <PictureCard
+              img={posterUrl + movie.posterPath}
+              isBlockView={isBlockView}
+            />
 
             <TextWrapper isBlockView={isBlockView}>
               <MovieTitle isBlockView={isBlockView}>{movie.title}</MovieTitle>

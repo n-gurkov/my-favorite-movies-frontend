@@ -21,6 +21,8 @@
     "add": "Добавить",
     "addButton": "Добавить фильмы",
     "blockViewButton": "Блочный вид",
-    "listViewButton": "Список"
+    "listViewButton": "Список",
+    "rating": "Рейтинг",
+    "year": "Год"
   }
 }

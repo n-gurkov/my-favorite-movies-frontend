@@ -1,42 +1,36 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   ButtonsWrapper,
   CaptionWrapper,
   Link,
-  LogoutForm,
-  LogoutButton,
   MainPageButton,
   MainPageWrapper,
 } from './assets/styles'
 import GenresSelector from './components/GenresSelector/GenresSelector'
-import MyMovies from './components/MyMovies/MyMovies'
-import block from './assets/block.svg'
-import list from './assets/list.svg'
-import plus from './assets/plus.svg'
-import { clearLogInData, getLocalData } from 'src/utils'
+import block from 'src/Components/assets/block.svg'
+import list from 'src/Components/assets/list.svg'
+import plus from 'src/Components/assets/plus.svg'
+import LogoutForm from 'src/Components/elements/LogoutForm/LogoutForm'
+import { getLocalData } from 'src/utils'
+import FavoriteMovieList from './components/FavoriteMovieList/FavoriteMovieList'
 
 const MainPage = () => {
-  const user = getLocalData('currentUser')
-
-  const navigate = useNavigate()
   const { t } = useTranslation()
+  const [isBlockView, setIsBlockView] = useState<boolean>(
+    getLocalData('isBlockView')
+  )
 
-  const [isBlockView, setIsBlockView] = useState<boolean>(true)
-  const logOut = () => {
-    clearLogInData()
-    navigate('/', { replace: true })
-  }
+  useEffect(() => {
+    localStorage.setItem('isBlockView', JSON.stringify(isBlockView))
+  }, [isBlockView])
+
   const handleBlockViewButtonClick = () => setIsBlockView(true)
   const handleListViewButtonClick = () => setIsBlockView(false)
 
   return (
     <MainPageWrapper>
-      <LogoutForm>
-        {t('mainPage.hello')}, {user}!
-        <LogoutButton onClick={logOut}>{t('mainPage.logout')}</LogoutButton>
-      </LogoutForm>
+      <LogoutForm />
 
       <CaptionWrapper>
         <p>{t('mainPage.genres')}</p>
@@ -61,7 +55,7 @@ const MainPage = () => {
           <img src={list} alt={t('mainPage.listViewButton')} />
         </MainPageButton>
       </ButtonsWrapper>
-      <MyMovies isBlockView={isBlockView} />
+      <FavoriteMovieList isBlockView={isBlockView} />
     </MainPageWrapper>
   )
 }
